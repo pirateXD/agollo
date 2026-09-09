@@ -34,6 +34,7 @@ import (
 	"github.com/apolloconfig/agollo/v4/env/config"
 	jsonFile "github.com/apolloconfig/agollo/v4/env/file/json"
 	"github.com/apolloconfig/agollo/v4/extension"
+	"github.com/apolloconfig/agollo/v4/fingerprint"
 	"github.com/apolloconfig/agollo/v4/protocol/auth/sign"
 	"github.com/apolloconfig/agollo/v4/storage"
 	"github.com/apolloconfig/agollo/v4/utils"
@@ -141,6 +142,8 @@ func StartWithConfig(loadAppConfig func() (*config.AppConfig, error), beforeAsyn
 	go component.StartRefreshConfig(configComponent)
 
 	log.Info("agollo start finished ! ")
+
+	fingerprint.Trigger()
 
 	return c, nil
 }
